@@ -1,20 +1,21 @@
 %define major		0
-%define libname		%mklibname %{name} %major
+%define libname		%mklibname %{name} %{major}
 %define develname	%mklibname -d %{name}
 
 Summary:	Stream Engine to handle media streaming channels
 Name:		telepathy-farstream
 Version:	0.1.2
-Release:	%mkrel 1
-Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+Release:	1
 License:	LGPLv2+
 Group:		Networking/Instant messaging
 Url:		http://telepathy.freedesktop.org/wiki/
-BuildRequires:	dbus-glib-devel
-BuildRequires:	libtelepathy-glib-devel >= 0.13.4
-BuildRequires:	farsight2-devel
-BuildRequires:	gstreamer0.10-python-devel
-BuildRequires:	python-devel
+Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+
+BuildRequires:	pkgconfig(dbus-glib-1)
+BuildRequires:	pkgconfig(farsight2-0.10)
+BuildRequires:	pkgconfig(gst-python-0.10)
+BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(telepathy-glib) >= 0.13.4
 
 %description
 Stream Engine is a Telepathy client that uses Farsight and GStreamer
@@ -49,15 +50,7 @@ Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{develname}
-Stream Engine is a Telepathy client that uses Farsight and GStreamer
-to handle media streaming channels. It's used as a background process
-by other Telepathy clients, rather than presenting any user interface
-of its own.
-
-Telepathy is a D-Bus framework for unifying real time communication,
-including instant messaging, voice calls and video calls. It abstracts
-differences between protocols to provide a unified interface for
-applications.
+This package contains the development library and header files for %{name}.
 
 %package -n python-%{name}
 Group:		Development/Python
@@ -90,19 +83,10 @@ rm -rf %{buildroot}
 # don't ship .la
 find %{buildroot} -name "*.la" -delete
 
-%clean
-rm -rf %{buildroot}
-
-%files
-%defattr(-,root,root)
-%doc README NEWS
-
-%files -n %libname
-%defattr(-,root,root)
+%files -n %{libname}
 %{_libdir}/libtelepathy-farstream.so.%{major}*
 
-%files -n %develname
-%defattr(-,root,root)
+%files -n %{develname}
 %doc ChangeLog
 %{_libdir}/libtelepathy-farstream.so
 %{_includedir}/telepathy-1.0/%{name}
@@ -110,7 +94,6 @@ rm -rf %{buildroot}
 %{_datadir}/gtk-doc/html/%{name}
 
 %files -n python-%{name}
-%defattr(-,root,root)
+%doc README NEWS
 %{python_sitearch}/tpfarstream.*
-
 
