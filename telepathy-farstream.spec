@@ -1,10 +1,10 @@
-%define major		0
+%define major		2
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname -d %{name}
 
 Summary:	Stream Engine to handle media streaming channels
 Name:		telepathy-farstream
-Version:	0.1.2
+Version:	0.4.0
 Release:	1
 License:	LGPLv2+
 Group:		Networking/Instant messaging
