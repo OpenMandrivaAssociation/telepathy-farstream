@@ -14,6 +14,7 @@ Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.ta
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(farsight2-0.10)
 BuildRequires:	pkgconfig(gst-python-0.10)
+BuildRequires:	pkgconfig(farstream-0.1)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(telepathy-glib) >= 0.13.4
 
