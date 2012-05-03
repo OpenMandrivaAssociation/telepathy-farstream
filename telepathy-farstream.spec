@@ -12,7 +12,6 @@ Url:		http://telepathy.freedesktop.org/wiki/
 Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	farsight2-devel
 BuildRequires:	pkgconfig(gst-python-0.10)
 BuildRequires:	pkgconfig(farstream-0.1)
 BuildRequires:	pkgconfig(python)
@@ -97,4 +96,3 @@ find %{buildroot} -name "*.la" -delete
 %files -n python-%{name}
 %doc README NEWS
 %{python_sitearch}/tpfarstream.*
-
