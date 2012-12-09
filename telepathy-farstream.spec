@@ -5,7 +5,7 @@
 Summary:	Stream Engine to handle media streaming channels
 Name:		telepathy-farstream
 Version:	0.4.0
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		Networking/Instant messaging
 Url:		http://telepathy.freedesktop.org/wiki/
@@ -80,9 +80,6 @@ applications.
 rm -rf %{buildroot}
 %makeinstall_std
 
-# don't ship .la
-find %{buildroot} -name "*.la" -delete
-
 %files -n %{libname}
 %{_libdir}/libtelepathy-farstream.so.%{major}*
 
@@ -96,3 +93,18 @@ find %{buildroot} -name "*.la" -delete
 %files -n python-%{name}
 %doc README NEWS
 %{python_sitearch}/tpfarstream.*
+
+
+%changelog
+* Thu May 03 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.4.0-1
++ Revision: 795254
+- mikala fix from cooker mail list
+- BR:farsight2-devel
+- BR:pkgconfig(farstream-0.1)
+- version update 0.4.0
+
+* Sat Dec 10 2011 Matthew Dawkins <mattydaw@mandriva.org> 0.1.2-1
++ Revision: 740048
+- cleaned up spec for first build
+- imported package telepathy-farstream
+
