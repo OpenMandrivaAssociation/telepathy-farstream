@@ -1,20 +1,22 @@
-%define major		2
-%define libname		%mklibname %{name} %{major}
-%define develname	%mklibname -d %{name}
+%define major	3
+%define gmajor	0.6
+%define libname	%mklibname %{name} %{major}
+%define girname	%mklibname %{name}-gir %{gmajor}
+%define devname	%mklibname -d %{name}
 
 Summary:	Stream Engine to handle media streaming channels
 Name:		telepathy-farstream
-Version:	0.4.0
-Release:	2
+Version:	0.6.0
+Release:	1
 License:	LGPLv2+
 Group:		Networking/Instant messaging
 Url:		http://telepathy.freedesktop.org/wiki/
 Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+Source1:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
 
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	pkgconfig(gst-python-0.10)
-BuildRequires:	pkgconfig(farstream-0.1)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(farstream-0.2)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(telepathy-glib) >= 0.13.4
 
 %description
@@ -43,31 +45,26 @@ including instant messaging, voice calls and video calls. It abstracts
 differences between protocols to provide a unified interface for
 applications.
 
-%package -n %{develname}
+%description -n	%{libname}
+Shared libraries for %{name}.
+
+%package -n %{girname}
+Summary:	GObject Introspection interface description for %{name}
+Group:		System/Libraries
+
+%description -n %{girname}
+GObject Introspection interface description for %{name}.
+
+%package -n %{devname}
 Group:		Development/C
 Summary:	Stream Engine to handle media streaming channels
 Requires:	%{libname} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
-This package contains the development library and header files for %{name}.
-
-%package -n python-%{name}
-Group:		Development/Python
-Summary:	Stream Engine to handle media streaming channels
-Requires:	%{libname} = %{version}-%{release}
-Requires:	gstreamer0.10-python
-
-%description -n python-%{name}
-Stream Engine is a Telepathy client that uses Farsight and GStreamer
-to handle media streaming channels. It's used as a background process
-by other Telepathy clients, rather than presenting any user interface
-of its own.
-
-Telepathy is a D-Bus framework for unifying real time communication,
-including instant messaging, voice calls and video calls. It abstracts
-differences between protocols to provide a unified interface for
-applications.
+%description -n %{devname}
+This package contains the development library and header files for 
+%{name}.
 
 %prep
 %setup -q
@@ -77,34 +74,19 @@ applications.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 %files -n %{libname}
 %{_libdir}/libtelepathy-farstream.so.%{major}*
 
-%files -n %{develname}
+%files -n %{girname}
+%{_libdir}/girepository-1.0/TelepathyFarstream-%{gmajor}.typelib
+
+%files -n %{devname}
 %doc ChangeLog
-%{_libdir}/libtelepathy-farstream.so
 %{_includedir}/telepathy-1.0/%{name}
+%{_libdir}/libtelepathy-farstream.so
 %{_libdir}/pkgconfig/%{name}.pc
-%{_datadir}/gtk-doc/html/%{name}
-
-%files -n python-%{name}
-%doc README NEWS
-%{python_sitearch}/tpfarstream.*
-
-
-%changelog
-* Thu May 03 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.4.0-1
-+ Revision: 795254
-- mikala fix from cooker mail list
-- BR:farsight2-devel
-- BR:pkgconfig(farstream-0.1)
-- version update 0.4.0
-
-* Sat Dec 10 2011 Matthew Dawkins <mattydaw@mandriva.org> 0.1.2-1
-+ Revision: 740048
-- cleaned up spec for first build
-- imported package telepathy-farstream
+%{_datadir}/gir-1.0/TelepathyFarstream-%{gmajor}.gir
+%doc %{_datadir}/gtk-doc/html/%{name}
 
