@@ -1,3 +1,6 @@
-sources:
+removed_sources:
   telepathy-farstream-0.6.0.tar.gz: 871ae094d7e44960ee264d89d84050cd52209653
+sources:
   telepathy-farstream-0.6.0.tar.gz.asc: fa7925b7cad459c8c5bb4ee10c73cce3eca4d5b1
+  telepathy-farstream-0.6.2.tar.gz: 27d4fb3e31eb7404b5f2ba72f73194fc1d2b704f
+  telepathy-farstream-0.6.2.tar.gz.asc: 704ce9b33a8dbf7cc8b91177b43f88854289fb37
