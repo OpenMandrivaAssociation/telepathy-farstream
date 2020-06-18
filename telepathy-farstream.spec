@@ -67,14 +67,14 @@ This package contains the development library and header files for
 %{name}.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
-%configure2_5x --disable-static
-%make
+%configure --disable-static
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libtelepathy-farstream.so.%{major}*
