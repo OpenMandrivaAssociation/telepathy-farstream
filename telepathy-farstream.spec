@@ -10,7 +10,7 @@ Version:	0.6.2
 Release:	9
 License:	LGPLv2+
 Group:		Networking/Instant messaging
-Url:		http://telepathy.freedesktop.org/wiki/
+Url:		https://telepathy.freedesktop.org/wiki/
 Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Source1:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
 
