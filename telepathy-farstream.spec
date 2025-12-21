@@ -14,6 +14,11 @@ Url:		https://telepathy.freedesktop.org/wiki/
 Source0:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 Source1:	http://telepathy.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz.asc
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(farstream-0.2)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
